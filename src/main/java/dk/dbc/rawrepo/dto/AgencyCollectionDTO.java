@@ -19,4 +19,9 @@ public class AgencyCollectionDTO {
         this.agencies = agencies;
     }
 
+    public Integer[] toArray() {
+        return agencies.stream()
+                .sorted()
+                .toArray(Integer[]::new);
+    }
 }

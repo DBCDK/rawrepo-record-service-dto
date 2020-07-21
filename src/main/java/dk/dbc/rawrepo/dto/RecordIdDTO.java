@@ -5,7 +5,9 @@
 
 package dk.dbc.rawrepo.dto;
 
-public class RecordIdDTO {
+import java.util.Objects;
+
+public class RecordIdDTO implements Comparable<RecordIdDTO>{
 
     private String bibliographicRecordId;
     private int agencyId;
@@ -41,5 +43,27 @@ public class RecordIdDTO {
                 "bibliographicRecordId='" + bibliographicRecordId + '\'' +
                 ", agencyId=" + agencyId +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RecordIdDTO that = (RecordIdDTO) o;
+        return agencyId == that.agencyId &&
+                Objects.equals(bibliographicRecordId, that.bibliographicRecordId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bibliographicRecordId, agencyId);
+    }
+
+    @Override
+    public int compareTo(RecordIdDTO other) {
+        int ret = Integer.compare(agencyId, other.agencyId);
+        if (ret == 0)
+            ret = bibliographicRecordId.compareTo(other.bibliographicRecordId);
+        return ret;
     }
 }

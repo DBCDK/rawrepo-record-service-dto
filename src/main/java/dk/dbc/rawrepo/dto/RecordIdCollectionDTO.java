@@ -5,9 +5,7 @@
 
 package dk.dbc.rawrepo.dto;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RecordIdCollectionDTO {
     private List<RecordIdDTO> recordIds;

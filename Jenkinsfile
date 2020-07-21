@@ -23,11 +23,9 @@ pipeline {
 
         stage('Build DTO artifact') {
             steps {
-                script {
-                    sh """ 
-                            mvn clean
-                            mvn install
-                        """
+                withMaven(maven: 'Maven 3') {
+                    sh "mvn clean install pmd:pmd"
+                    junit "target/surefire-reports/TEST-*.xml"
                 }
             }
         }
